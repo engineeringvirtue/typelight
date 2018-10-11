@@ -1,5 +1,5 @@
 use state;
-use state::{CatalogMessage, FontCatalog, FontSelection, Font, SavedWithFont, FontCatalogFilter, FontCatalogSource, FontCatalogCache};
+use state::*;
 use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 use utility::*;
@@ -13,7 +13,7 @@ fn google_fonts () {
 
 impl FontCatalog {
     fn cancel (&mut self) {
-      self.loaders.iter().for_each(|thread| thread.cancel());
+      self.loaders.iter_mut().for_each(|ref mut thread| { thread.cancel(); });
     }
 
     fn filter (&mut self) {
@@ -23,24 +23,33 @@ impl FontCatalog {
             self.filters.iter().fold(cache.intermediate.iter().collect(), |res: Vec<&(SavedWithFont, FontCatalogSource)>, filter| {
                 match filter {
                     FontCatalogFilter::Search(str) => {
-                        res.into_iter().filter(|(SavedWithFont(_, Arc::clone(Font { family: fontname, .. })), source)| {
-                            edit_distance(&str, &fontname) < 5
+                        res.into_iter().filter(|(SavedWithFont(_, font), source)| {
+                            let fontname = &font.name;
+                            edit_distance(&str, fontname) < 5
+                        }).collect()
+                    },
+                    FontCatalogFilter::Flag(flag) => {
+                        res.into_iter().filter(|(SavedWithFont(saved, font), source)| {
+                            match flag { _ => true }
                         }).collect()
                     }
                 }
             });
 
-        self.results = pipe!(newres.iter().map(| (font, _) | *font).collect() => Ok => Some);
+        self.results = pipe!(newres.iter().map(| (font, _) | SavedWithFont::clone(font)).collect() => Ok => Some);
     }
 
-    fn query (&mut self) {
-       self.query.iter().fold(Vec::new(), |res:Vec<Font>, query|
+    fn query (&mut self) -> Vec<Font> {
+       self.query.iter().fold(Vec::new(), |res:Vec<Font>, query| {
            match query {
                FontCatalogSource::Google => {
-                   //TODO: STUFF
-               }
-           }
-       )
+                   
+               },
+               FontCatalogSource::Folder (folder) => {}
+            }
+
+           res
+       })
     }
 
     fn receive(&mut self, msg:CatalogMessage) {

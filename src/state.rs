@@ -59,6 +59,7 @@ pub struct FontFamily {
 }
 
 pub type FontSource = fn() -> Font;
+
 pub struct FolderSource {
     pub name:String,
     pub dir:String
@@ -75,6 +76,7 @@ pub struct SavedFont {
     popularity: i32
 }
 
+#[derive(Clone)]
 pub struct SavedWithFont (pub Arc<SavedFont>, pub Arc<Font>); //saved font index
 
 pub struct CatalogConfig {
