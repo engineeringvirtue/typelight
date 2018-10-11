@@ -1,0 +1,11 @@
+[package]
+name = "type_light"
+version = "0.1.0"
+authors = ["Thomas-QM <thomas@engineeringvirtue.net>"]
+
+[dependencies]
+sciter-rs = "*"
+pipeline="*"
+sublime_fuzzy = "*"
+edit-distance = "*"
+chrono = "*"

@@ -1,0 +1,21 @@
+<html window-icon="img/appicon.png" window-frame="extended" window-resizable window-blurbehind="ultra-dark" >
+    <style src="style/main.css" />
+    <script type="text/tiscript" src="main.tis" />
+    
+    <body>
+        <toolbar>
+            <div.dragspace role=window-caption>
+                <img src="img/appicon.png" ></img>
+            </div>
+            <window-buttons>
+                <button role="window-minimize" ><include src="img/window-minimize.svg" /></button>
+                <button role="window-maximize" ><include src="img/window-maximize.svg" /></button>
+                <button role="window-close" ><include src="img/window-x.svg" /></button>
+            </window-buttons>
+        </toolbar>
+
+        <frameset>
+            <include src="catalogbrowser.html" />
+        </frameset>
+    </body>
+</html>

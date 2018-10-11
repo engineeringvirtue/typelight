@@ -1,0 +1,58 @@
+@import "dark.css"; 
+
+* {
+    color: @WINDOW_COLOR;
+    background-color: @WINDOW_BG;
+}
+
+button:hover {
+    color: @WINDOW_COLOR_HOVER;
+    background-color: @WINDOW_BG_HOVER;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    padding: 0;
+}
+
+toolbar {
+    width: 100%;
+    flow: horizontal;
+    box-shadow: 0 0 40px @WINDOW_OVERLAY_SHADOW;
+    background-color: @WINDOW_BG_OVERLAY;
+}
+
+.dragspace {
+    vertical-align: middle;
+    font-family: "Bevan";
+    width: *;
+    height: *;
+}
+
+.dragspace > img {
+    margin: 0 10dip;
+    width: 13dip;
+}
+
+window-buttons {
+    width: 10%;
+}
+
+window-buttons > button {
+    background: transparent;
+    border: none;
+}
+
+window-buttons > button[role="window-close"]:hover {
+    background: darkred;
+}
+
+window-buttons > button > svg {
+    background: transparent;
+    border: none;
+}

@@ -1,0 +1,16 @@
+@const WINDOW_BG: #000102;
+@const WINDOW_BG_HOVER: #0d2839;
+@const WINDOW_BG_OVERLAY: #17222b;
+
+@const WINDOW_COLOR: whitesmoke;
+@const WINDOW_COLOR_HOVER: white;
+
+@const WINDOW_EDGE: #2bafff;
+
+@const WINDOW_OVERLAY_SHADOW: #313651;
+
+@font-face 
+{
+    font-family: "Bevan";
+    src: url('../img/Bevan-Regular.ttf');
+}
